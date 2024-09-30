@@ -2,6 +2,7 @@
 
 import { defaultExtensions } from '@/components/editor/extensions'
 import TextButtons from '@/components/editor/selectors/text-buttons'
+import { Separator } from '@/components/ui/separator'
 import { EditorBubble, EditorContent, EditorRoot, JSONContent } from 'novel'
 
 const extensions = [...defaultExtensions]
@@ -32,6 +33,7 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           tippyOptions={{ placement: 'top' }}
           className='flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl'
         >
+          <Separator orientation='vertical' className='h-auto' />
           <TextButtons />
         </EditorBubble>
       </EditorContent>
