@@ -1,7 +1,8 @@
 'use client'
 
 import { defaultExtensions } from '@/components/editor/extensions'
-import { EditorContent, EditorRoot, JSONContent } from 'novel'
+import TextButtons from '@/components/editor/selectors/text-buttons'
+import { EditorBubble, EditorContent, EditorRoot, JSONContent } from 'novel'
 
 const extensions = [...defaultExtensions]
 
@@ -26,7 +27,14 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
         onUpdate={({ editor }) => {
           onChange(editor.getJSON())
         }}
-      ></EditorContent>
+      >
+        <EditorBubble
+          tippyOptions={{ placement: 'top' }}
+          className='flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl'
+        >
+          <TextButtons />
+        </EditorBubble>
+      </EditorContent>
     </EditorRoot>
   )
 }
