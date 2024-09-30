@@ -1,9 +1,9 @@
 'use client'
 
+import { defaultExtensions } from '@/components/editor/extensions'
 import { EditorContent, EditorRoot, JSONContent } from 'novel'
-import { StarterKit } from 'novel/extensions'
 
-const extensions = [StarterKit]
+const extensions = [...defaultExtensions]
 
 type EditorProps = {
   initialValue?: JSONContent
