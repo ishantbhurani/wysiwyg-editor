@@ -12,7 +12,9 @@ export default function Home() {
       <h1 className='text-3xl font-bold text-center text-zinc-700 my-8'>
         Novel Editor
       </h1>
-      <Editor initialValue={content} onChange={setContent} />
+      <div>
+        <Editor initialValue={content} onChange={setContent} />
+      </div>
     </main>
   )
 }
