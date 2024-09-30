@@ -6,6 +6,7 @@ import {
   TaskList,
   TiptapImage,
   TiptapLink,
+  TiptapUnderline,
   UpdatedImage,
 } from 'novel/extensions'
 import { UploadImagesPlugin } from 'novel/plugins'
@@ -13,6 +14,7 @@ import { UploadImagesPlugin } from 'novel/plugins'
 import { cx } from 'class-variance-authority'
 
 const placeholder = Placeholder
+const underline = TiptapUnderline
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cx(
@@ -111,4 +113,5 @@ export const defaultExtensions = [
   taskList,
   taskItem,
   horizontalRule,
+  underline,
 ]
