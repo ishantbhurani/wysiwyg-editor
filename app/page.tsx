@@ -5,7 +5,14 @@ import { JSONContent } from 'novel'
 import { useState } from 'react'
 
 export default function Home() {
-  const [content, setContent] = useState<JSONContent>({})
+  const [content, setContent] = useState<JSONContent>()
 
-  return <Editor initialValue={content} onChange={setContent} />
+  return (
+    <main className='container mx-auto'>
+      <h1 className='text-3xl font-bold text-center text-zinc-700 my-8'>
+        Novel Editor
+      </h1>
+      <Editor initialValue={content} onChange={setContent} />
+    </main>
+  )
 }
