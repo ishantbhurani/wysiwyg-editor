@@ -1,5 +1,6 @@
 import {
   Color,
+  GlobalDragHandle,
   HighlightExtension,
   HorizontalRule,
   Placeholder,
@@ -21,6 +22,7 @@ const underline = TiptapUnderline
 const color = Color
 const highlight = HighlightExtension.configure()
 const textStyle = TextStyle
+const dragHandle = GlobalDragHandle
 const tiptapLink = TiptapLink.configure({
   autolink: true,
   linkOnPaste: true,
@@ -125,4 +127,5 @@ export const defaultExtensions = [
   color,
   textStyle,
   highlight,
+  dragHandle,
 ]
