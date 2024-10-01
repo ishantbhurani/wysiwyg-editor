@@ -1,9 +1,11 @@
 'use client'
 
 import { defaultExtensions } from '@/components/editor/extensions'
+import LinkSelector from '@/components/editor/selectors/link-selector'
 import TextButtons from '@/components/editor/selectors/text-buttons'
 import { Separator } from '@/components/ui/separator'
 import { EditorBubble, EditorContent, EditorRoot, JSONContent } from 'novel'
+import { useState } from 'react'
 
 const extensions = [...defaultExtensions]
 
@@ -13,6 +15,8 @@ type EditorProps = {
 }
 
 export default function Editor({ initialValue, onChange }: EditorProps) {
+  const [openLink, setOpenLink] = useState(false)
+
   return (
     <EditorRoot>
       <EditorContent
@@ -33,6 +37,7 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           tippyOptions={{ placement: 'top' }}
           className='flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl'
         >
+          <LinkSelector open={openLink} onOpenChange={setOpenLink} />
           <Separator orientation='vertical' className='h-auto' />
           <TextButtons />
         </EditorBubble>
