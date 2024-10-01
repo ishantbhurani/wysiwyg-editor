@@ -4,7 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { nodeItems } from '@/lib/data'
+import { NODE_ITEMS } from '@/lib/data'
 import { Check, ChevronDown } from 'lucide-react'
 import { EditorBubbleItem, useEditor } from 'novel'
 
@@ -20,9 +20,9 @@ export default function NodeSelector({
   const { editor } = useEditor()
   if (!editor) return null
 
-  const activeItem = nodeItems
-    .filter((item) => item.isActive(editor))
-    .pop() ?? {
+  const activeItem = NODE_ITEMS.filter((item) =>
+    item.isActive(editor)
+  ).pop() ?? {
     name: 'Multiple',
   }
 
@@ -38,7 +38,7 @@ export default function NodeSelector({
         </Button>
       </PopoverTrigger>
       <PopoverContent sideOffset={5} align='start' className='w-48 p-1'>
-        {nodeItems.map((item, index) => (
+        {NODE_ITEMS.map((item, index) => (
           <EditorBubbleItem
             key={index}
             onSelect={(editor) => {

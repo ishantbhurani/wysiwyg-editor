@@ -10,7 +10,7 @@ import {
   TextQuote,
 } from 'lucide-react'
 
-export const nodeItems: SelectorItem[] = [
+export const NODE_ITEMS: SelectorItem[] = [
   {
     name: 'Text',
     icon: TextIcon,
