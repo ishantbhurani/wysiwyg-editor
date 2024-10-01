@@ -1,6 +1,7 @@
 'use client'
 
 import { defaultExtensions } from '@/components/editor/extensions'
+import ColorSelector from '@/components/editor/selectors/color-selector'
 import LinkSelector from '@/components/editor/selectors/link-selector'
 import NodeSelector from '@/components/editor/selectors/node-selector'
 import TextButtons from '@/components/editor/selectors/text-buttons'
@@ -19,6 +20,7 @@ type EditorProps = {
 export default function Editor({ initialValue, onChange }: EditorProps) {
   const [openLink, setOpenLink] = useState(false)
   const [openNode, setOpenNode] = useState(false)
+  const [openColor, setOpenColor] = useState(false)
 
   return (
     <EditorRoot>
@@ -43,12 +45,13 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           tippyOptions={{ placement: 'top' }}
           className='flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl'
         >
-          <Separator orientation='vertical' className='h-auto' />
           <NodeSelector open={openNode} onOpenChange={setOpenNode} />
           <Separator orientation='vertical' className='h-auto' />
           <LinkSelector open={openLink} onOpenChange={setOpenLink} />
           <Separator orientation='vertical' className='h-auto' />
           <TextButtons />
+          <Separator orientation='vertical' className='h-auto' />
+          <ColorSelector open={openColor} onOpenChange={setOpenColor} />
         </EditorBubble>
       </EditorContent>
     </EditorRoot>
