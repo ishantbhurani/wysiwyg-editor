@@ -1,9 +1,12 @@
 import {
+  Color,
+  HighlightExtension,
   HorizontalRule,
   Placeholder,
   StarterKit,
   TaskItem,
   TaskList,
+  TextStyle,
   TiptapImage,
   TiptapLink,
   TiptapUnderline,
@@ -15,6 +18,9 @@ import { cx } from 'class-variance-authority'
 
 const placeholder = Placeholder
 const underline = TiptapUnderline
+const color = Color
+const highlight = HighlightExtension.configure()
+const textStyle = TextStyle
 const tiptapLink = TiptapLink.configure({
   autolink: true,
   linkOnPaste: true,
@@ -116,4 +122,7 @@ export const defaultExtensions = [
   taskItem,
   horizontalRule,
   underline,
+  color,
+  textStyle,
+  highlight,
 ]
