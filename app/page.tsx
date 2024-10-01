@@ -1,14 +1,17 @@
 'use client'
 
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 import dynamic from 'next/dynamic'
 import { JSONContent } from 'novel'
-import { useState } from 'react'
 const Editor = dynamic(() => import('@/components/editor/editor'), {
   ssr: false,
 })
 
 export default function Home() {
-  const [content, setContent] = useState<JSONContent>()
+  const [content, setContent] = useLocalStorage<JSONContent | null>(
+    'content',
+    null
+  )
 
   return (
     <main className='container mx-auto'>
@@ -16,7 +19,10 @@ export default function Home() {
         Novel Editor
       </h1>
       <div>
-        <Editor initialValue={content} onChange={setContent} />
+        <Editor
+          {...(content && { initialValue: content })}
+          onChange={setContent}
+        />
       </div>
     </main>
   )
