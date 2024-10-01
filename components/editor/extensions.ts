@@ -16,6 +16,8 @@ import { cx } from 'class-variance-authority'
 const placeholder = Placeholder
 const underline = TiptapUnderline
 const tiptapLink = TiptapLink.configure({
+  autolink: true,
+  linkOnPaste: true,
   HTMLAttributes: {
     class: cx(
       'text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer'
