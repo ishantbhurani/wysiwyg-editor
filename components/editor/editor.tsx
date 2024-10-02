@@ -1,6 +1,7 @@
 'use client'
 
 import { defaultExtensions } from '@/components/editor/extensions'
+import { uploadFn } from '@/components/editor/image-upload'
 import ColorSelector from '@/components/editor/selectors/color-selector'
 import LinkSelector from '@/components/editor/selectors/link-selector'
 import NodeSelector from '@/components/editor/selectors/node-selector'
@@ -20,7 +21,8 @@ import {
   EditorRoot,
   JSONContent,
 } from 'novel'
-import { handleCommandNavigation } from 'novel/extensions'
+import { handleCommandNavigation, ImageResizer } from 'novel/extensions'
+import { handleImageDrop, handleImagePaste } from 'novel/plugins'
 import { useState } from 'react'
 
 const extensions = [...defaultExtensions, slashCommand]
@@ -45,6 +47,9 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           handleDOMEvents: {
             keydown: (_view, event) => handleCommandNavigation(event),
           },
+          handlePaste: (view, event) => handleImagePaste(view, event, uploadFn),
+          handleDrop: (view, event, _slice, moved) =>
+            handleImageDrop(view, event, moved, uploadFn),
           attributes: {
             class:
               'prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full',
@@ -53,6 +58,7 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
         onUpdate={({ editor }) => {
           onChange(editor.getJSON())
         }}
+        slotAfter={<ImageResizer />}
       >
         <EditorCommand className='z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all'>
           <EditorCommandEmpty className='px-2 text-muted-foreground'>
