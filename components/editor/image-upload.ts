@@ -2,13 +2,16 @@ import { createImageUpload } from 'novel/plugins'
 import { toast } from 'sonner'
 
 const onUpload = (file: File) => {
+  const formData = new FormData()
+  formData.append('file', file)
+
   const promise = fetch('/api/upload', {
     method: 'POST',
-    headers: {
-      'content-type': file?.type || 'application/octet-stream',
-      'x-vercel-filename': file?.name || 'image.png',
-    },
-    body: file,
+    // headers: {
+    //   'content-type': file?.type || 'application/octet-stream',
+    //   'x-vercel-filename': file?.name || 'image.png',
+    // },
+    body: formData,
   })
 
   return new Promise((resolve) => {
@@ -16,7 +19,7 @@ const onUpload = (file: File) => {
       promise.then(async (res) => {
         // Successfully uploaded image
         if (res.status === 200) {
-          const { url } = (await res.json()) as any
+          const { secure_url: url } = (await res.json()) as any
           // preload the image
           let image = new Image()
           image.src = url
